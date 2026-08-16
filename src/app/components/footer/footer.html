@@ -1,0 +1,11 @@
+<footer class="footer">
+  <div class="container footer__inner">
+    <a href="#home" class="footer__logo">NIMET</a>
+    <p class="footer__copy">© {{ year }}</p>
+    <nav class="footer__social" aria-label="Social links">
+      @for (link of socialLinks; track link.label) {
+      <a [href]="link.href" target="_blank" rel="noopener">{{ link.label }}</a>
+      }
+    </nav>
+  </div>
+</footer>

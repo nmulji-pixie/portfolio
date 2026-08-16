@@ -1,0 +1,15 @@
+<header class="navbar">
+  <div class="container navbar__inner">
+    <a href="#home" class="navbar__logo" (click)="setActive('home')">Nimet T. Mulji</a>
+
+    <nav class="navbar__nav" aria-label="Main navigation">
+      @for (link of navLinks; track link.fragment) {
+      <a [href]="'#' + link.fragment" class="navbar__link"
+        [class.navbar__link--active]="activeFragment() === link.fragment" (click)="setActive(link.fragment)">
+        {{ link.label }}
+      </a>
+      }
+    </nav>
+
+  </div>
+</header>

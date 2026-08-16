@@ -1,0 +1,58 @@
+<section id="about" class="skills section">
+  <div class="container">
+    <app-section-heading title="Technical Arsenal" />
+
+    <div class="arsenal">
+      @for (category of categories; track category.title; let i = $index) {
+        <article class="arsenal-card" appScrollReveal [appScrollRevealDelay]="i * 100">
+          <header class="arsenal-card__header">
+            <span class="arsenal-card__header-icon" aria-hidden="true">
+              @switch (category.icon) {
+                @case ('frontend') {
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2 2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  </svg>
+                }
+                @case ('backend') {
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="3" width="20" height="6" rx="1"/>
+                    <rect x="2" y="15" width="20" height="6" rx="1"/>
+                    <path d="M6 9v6M18 9v6"/>
+                  </svg>
+                }
+                @case ('ai') {
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 2.5 2.5 0 0 1-.54-2.96A2.5 2.5 0 0 1 9.5 2Z"/>
+                    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 2.5 2.5 0 0 0 .54-2.96A2.5 2.5 0 0 0 14.5 2Z"/>
+                  </svg>
+                }
+                @case ('data') {
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                    <path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/>
+                    <path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6"/>
+                  </svg>
+                }
+              }
+            </span>
+            <h3 class="arsenal-card__title">{{ category.title }}</h3>
+          </header>
+
+          <ul class="arsenal-card__techs">
+            @for (tech of category.techs; track tech.name) {
+              <li class="arsenal-card__tech" [attr.data-tooltip]="tech.name" [attr.aria-label]="tech.name">
+                <img
+                  [src]="iconSrc(tech.icon)"
+                  [alt]="tech.name"
+                  class="arsenal-card__tech-logo"
+                  loading="lazy"
+                />
+              </li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+</section>

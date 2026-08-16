@@ -1,0 +1,21 @@
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+
+  &__line {
+    width: 2.5rem;
+    height: 2px;
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-family: var(--font-headline);
+    font-size: clamp(1.375rem, 3vw, 1.875rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+  }
+}

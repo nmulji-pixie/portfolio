@@ -1,0 +1,43 @@
+<section id="experience" class="experience section">
+  <div class="container">
+    <app-section-heading title="Career Evolution" />
+
+    <div class="timeline">
+      <div class="timeline__track" aria-hidden="true"></div>
+
+      @for (exp of experiences; track exp.title; let i = $index) {
+        <article
+          class="timeline__row"
+          [class.timeline__row--left]="i % 2 === 0"
+          [class.timeline__row--right]="i % 2 !== 0"
+          appScrollReveal
+          [appScrollRevealDelay]="i * 120"
+        >
+          <div class="timeline__card">
+            <p class="timeline__period">{{ exp.period }}</p>
+            <h3 class="timeline__title">{{ exp.title }}</h3>
+            <p class="timeline__company">{{ exp.company }}</p>
+            <p class="timeline__desc">{{ exp.description }}</p>
+          </div>
+
+          <div class="timeline__node" [class.timeline__node--active]="i === 0">
+            @if (exp.icon === 'briefcase') {
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+              </svg>
+            } @else {
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M10 2v7.5L4.2 19.5a1.5 1.5 0 0 0 1.35 2h12.9a1.5 1.5 0 0 0 1.35-2L14 9.5V2"/>
+                <path d="M8.5 2h7"/>
+                <path d="M7 14h10"/>
+              </svg>
+            }
+          </div>
+
+          <div class="timeline__spacer" aria-hidden="true"></div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

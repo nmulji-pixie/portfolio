@@ -1,0 +1,42 @@
+<section id="projects" class="projects section">
+  <div class="container">
+    <app-section-heading title="Featured Projects" />
+
+    <div class="projects__grid">
+      @for (project of projects; track project.title; let i = $index) {
+        <article
+          class="project-card"
+          appScrollReveal
+          appScrollRevealVariant="card"
+          [appScrollRevealIndex]="i"
+          [appScrollRevealDelay]="i * 140"
+        >
+          <div class="project-card__shine" aria-hidden="true"></div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">{{ project.title }}</h3>
+            <p class="project-card__desc">{{ project.description }}</p>
+            <div class="project-card__tags">
+              @for (tag of project.tags; track tag.name) {
+                <span class="project-card__tag" [attr.title]="tag.name">
+                  @if (tag.icon) {
+                    <img [src]="iconSrc(tag.icon)" [alt]="" class="project-card__tag-icon" />
+                  }
+                  <span class="project-card__tag-name">{{ tag.name }}</span>
+                </span>
+              }
+            </div>
+            <a
+              [href]="project.link"
+              class="project-card__btn btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ project.linkLabel ?? 'View Project' }}
+              <span class="project-card__btn-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

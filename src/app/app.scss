@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+}
+
+.app-main {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+app-navbar,
+app-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* Holographic background */
+.holo-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg-primary);
+
+  &__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+    will-change: transform;
+
+    &--1 {
+      width: min(55vw, 520px);
+      height: min(55vw, 520px);
+      top: -12%;
+      left: -8%;
+      background: radial-gradient(circle, rgba(217, 197, 178, 0.35) 0%, transparent 70%);
+      animation: holo-float-1 18s ease-in-out infinite;
+      translate: 0 var(--scroll-parallax-1, 0);
+    }
+
+    &--2 {
+      width: min(50vw, 480px);
+      height: min(50vw, 480px);
+      top: 35%;
+      right: -12%;
+      background: radial-gradient(circle, rgba(138, 154, 138, 0.3) 0%, transparent 70%);
+      animation: holo-float-2 22s ease-in-out infinite;
+      translate: 0 var(--scroll-parallax-2, 0);
+    }
+
+    &--3 {
+      width: min(45vw, 420px);
+      height: min(45vw, 420px);
+      bottom: -10%;
+      left: 25%;
+      background: radial-gradient(circle, rgba(176, 125, 98, 0.28) 0%, transparent 70%);
+      animation: holo-float-3 20s ease-in-out infinite;
+      translate: 0 var(--scroll-parallax-3, 0);
+    }
+  }
+
+  &__sheen {
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(217, 197, 178, 0.06) 60deg,
+      rgba(138, 154, 138, 0.08) 120deg,
+      rgba(176, 125, 98, 0.06) 180deg,
+      rgba(217, 197, 178, 0.05) 240deg,
+      rgba(138, 154, 138, 0.07) 300deg,
+      transparent 360deg
+    );
+    animation: holo-rotate 28s linear infinite;
+  }
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(217, 197, 178, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(217, 197, 178, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
+    animation: holo-grid-pulse 8s ease-in-out infinite;
+  }
+}
+
+@keyframes holo-float-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(8%, 12%) scale(1.08);
+  }
+}
+
+@keyframes holo-float-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-10%, 6%) scale(1.1);
+  }
+}
+
+@keyframes holo-float-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, -8%) scale(1.06);
+  }
+}
+
+@keyframes holo-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes holo-grid-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holo-bg__orb,
+  .holo-bg__sheen,
+  .holo-bg__grid {
+    animation: none !important;
+  }
+}

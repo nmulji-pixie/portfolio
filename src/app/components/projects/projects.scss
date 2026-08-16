@@ -1,0 +1,191 @@
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  perspective: 1200px;
+}
+
+/* Card scroll reveal — projects only */
+:host ::ng-deep .scroll-reveal-card {
+  opacity: 0;
+  transform: translate3d(var(--reveal-x, 0), 56px, 0) scale(0.9) rotateX(8deg);
+  filter: blur(10px);
+  transform-origin: center bottom;
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+
+  &.scroll-reveal-card--visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) rotateX(0);
+    filter: blur(0);
+  }
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  will-change: transform, opacity, filter;
+
+  &__shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      125deg,
+      transparent 30%,
+      rgba(217, 197, 178, 0.07) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &:hover {
+    border-color: rgba(217, 197, 178, 0.35);
+    box-shadow:
+      0 20px 48px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(217, 197, 178, 0.1),
+      0 0 32px rgba(217, 197, 178, 0.06);
+
+    .project-card__shine {
+      transform: translateX(120%);
+    }
+
+    .project-card__btn-arrow {
+      transform: translateX(4px);
+    }
+  }
+
+  &.scroll-reveal-card--visible:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  &__body {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__title {
+    font-family: var(--font-headline);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    transition: color 0.25s ease;
+  }
+
+  &:hover &__title {
+    color: var(--color-primary);
+  }
+
+  &__desc {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.3125rem 0.625rem 0.3125rem 0.375rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-pill);
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      background 0.25s ease;
+
+    &:hover {
+      border-color: var(--border-muted);
+      background: rgba(217, 197, 178, 0.06);
+      transform: translateY(-1px);
+    }
+  }
+
+  &__tag-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  &__tag-name {
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    color: var(--color-secondary);
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+
+  &__btn {
+    align-self: flex-start;
+    gap: 0.375rem;
+    margin-top: auto;
+  }
+
+  &__btn-arrow {
+    display: inline-block;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (max-width: 900px) {
+  .projects__grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  :host ::ng-deep .scroll-reveal-card {
+    transform: translate3d(0, 40px, 0) scale(0.94);
+    transform-origin: center center;
+
+    &.scroll-reveal-card--visible {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host ::ng-deep .scroll-reveal-card {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+
+    &.scroll-reveal-card--visible {
+      transform: none;
+    }
+  }
+
+  .project-card__shine {
+    display: none;
+  }
+
+  .project-card.scroll-reveal-card--visible:hover {
+    transform: none;
+  }
+}

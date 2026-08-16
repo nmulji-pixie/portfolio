@@ -1,0 +1,76 @@
+<section id="contact" class="contact section">
+  <div class="container">
+    <app-section-heading title="Contact" />
+
+    <form class="contact__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate appScrollReveal [appScrollRevealDelay]="80">
+      <div class="contact__row contact__row--split">
+        <div class="contact__field">
+          <label class="contact__label" for="contact-name">Name</label>
+          <input
+            id="contact-name"
+            type="text"
+            class="contact__input"
+            formControlName="name"
+            placeholder="Your name"
+            autocomplete="name"
+          />
+        </div>
+        <div class="contact__field">
+          <label class="contact__label" for="contact-email">Email</label>
+          <input
+            id="contact-email"
+            type="email"
+            class="contact__input"
+            formControlName="email"
+            placeholder="Your email address"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <div class="contact__field">
+        <label class="contact__label" for="contact-subject">Subject</label>
+        <input
+          id="contact-subject"
+          type="text"
+          class="contact__input"
+          formControlName="subject"
+          placeholder="Message subject"
+        />
+      </div>
+
+      <div class="contact__field">
+        <label class="contact__label" for="contact-message">Message</label>
+        <textarea
+          id="contact-message"
+          class="contact__input contact__textarea"
+          formControlName="message"
+          placeholder="Your message (max 1000 characters)..."
+          rows="6"
+        ></textarea>
+      </div>
+
+      <div class="contact__actions">
+        <button
+          type="submit"
+          class="btn-primary contact__submit"
+          [disabled]="submitting()"
+          [attr.aria-busy]="submitting()"
+        >
+          {{ submitting() ? 'Sending…' : 'Send' }}
+        </button>
+      </div>
+
+      @if (submitStatus() === 'success') {
+        <p class="contact__feedback contact__feedback--success" role="status" aria-live="polite">
+          {{ submitMessage() }}
+        </p>
+      }
+      @if (submitStatus() === 'error') {
+        <p class="contact__feedback contact__feedback--error" role="alert" aria-live="assertive">
+          {{ submitMessage() }}
+        </p>
+      }
+    </form>
+  </div>
+</section>

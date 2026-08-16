@@ -1,0 +1,51 @@
+<section id="home" class="hero section">
+  <div class="container hero__grid">
+    <div class="hero__portrait" appScrollReveal>
+      <div class="hero__portrait-frame">
+        <img
+          class="hero__portrait-img"
+          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3k5dTF5MjIzOXA5OXBuYno2MjA5NWt3OGVlcTFjaWhsOTNjaWtpdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/px9v45I39CcxyXPqEy/giphy.gif"
+          width="200"
+          alt="Nimet"
+        />
+      </div>
+    </div>
+
+    <div class="hero__content" appScrollReveal [appScrollRevealDelay]="120">
+      <p class="hero__greeting">Hi, it's Nimet</p>
+      <h1 class="hero__headline">
+        I'm a <span class="hero__role">{{ displayText() }}</span
+        ><span class="hero__cursor" [class.hero__cursor--hidden]="!showCursor()">|</span>
+      </h1>
+      <p class="hero__bio">
+        I am passionate about building the future of software using cloud technology and AI.
+      </p>
+
+      <div class="hero__actions">
+        <a
+          href="https://www.linkedin.com/in/nimetmulji/"
+          class="hero__icon-btn"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-12h4v2" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+        <a
+          href="https://github.com/nmulji-pixie"
+          class="hero__icon-btn"
+          aria-label="GitHub"
+          target="_blank"
+          rel="noopener"
+        >
+          <img src="/tech/github.svg" alt="" class="hero__icon-img" width="18" height="18" />
+        </a>
+        <a href="#contact" class="btn-primary hero__cta">Contact me</a>
+      </div>
+    </div>
+  </div>
+</section>
