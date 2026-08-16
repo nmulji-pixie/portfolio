@@ -5,7 +5,7 @@
     <div class="timeline">
       <div class="timeline__track" aria-hidden="true"></div>
 
-      @for (exp of experiences; track exp.title; let i = $index) {
+      @for (exp of experiences; track exp.company + exp.title + exp.period; let i = $index) {
         <article
           class="timeline__row"
           [class.timeline__row--left]="i % 2 === 0"

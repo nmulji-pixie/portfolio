@@ -1,10 +1,20 @@
 .contact__form {
+  position: relative;
   max-width: 720px;
   margin: 0 auto;
   padding: 2rem;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
+}
+
+.contact__honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .contact__row--split {
@@ -100,6 +110,22 @@
   color: var(--primary-100);
   background: rgba(176, 125, 98, 0.14);
   border: 1px solid rgba(176, 125, 98, 0.35);
+}
+
+.contact__alt {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.contact__alt-link {
+  color: var(--color-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 @media (max-width: 640px) {

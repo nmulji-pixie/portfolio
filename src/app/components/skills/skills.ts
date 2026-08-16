@@ -13,6 +13,6 @@ export class Skills {
   protected readonly categories = TECH_STACK;
 
   protected iconSrc(icon: string): string {
-    return `/tech/${icon}.svg`;
+    return `tech/${icon}.svg`;
   }
 }

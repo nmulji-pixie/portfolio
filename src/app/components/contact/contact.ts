@@ -3,14 +3,14 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
-import { environment } from '../../../environments/environment';
+import { CONTACT_EMAIL } from '../../data/portfolio.data';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { SectionHeading } from '../section-heading/section-heading';
 
-const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`;
 
-interface Web3FormsResponse {
-  success: boolean;
+interface FormSubmitResponse {
+  success: boolean | string;
   message?: string;
 }
 
@@ -24,6 +24,7 @@ export class Contact {
   private readonly fb = inject(FormBuilder);
   private readonly http = inject(HttpClient);
 
+  protected readonly contactEmail = CONTACT_EMAIL;
   protected readonly submitting = signal(false);
   protected readonly submitStatus = signal<'idle' | 'success' | 'error'>('idle');
   protected readonly submitMessage = signal('');
@@ -33,6 +34,7 @@ export class Contact {
     email: ['', [Validators.required, Validators.email]],
     subject: ['', [Validators.required, Validators.maxLength(200)]],
     message: ['', [Validators.required, Validators.maxLength(1000)]],
+    website: [''],
   });
 
   protected async onSubmit(): Promise<void> {
@@ -41,12 +43,10 @@ export class Contact {
       return;
     }
 
-    const key = environment.web3formsAccessKey?.trim();
-    if (!key) {
-      this.submitStatus.set('error');
-      this.submitMessage.set(
-        'Contact form is not configured yet. Add your Web3Forms access key in src/environments/environment.ts (see comment in that file).'
-      );
+    if (this.form.controls.website.value.trim()) {
+      this.submitStatus.set('success');
+      this.submitMessage.set('Thanks — your message was sent. I will reply soon.');
+      this.form.reset();
       return;
     }
 
@@ -57,25 +57,29 @@ export class Contact {
     const { name, email, subject, message } = this.form.getRawValue();
 
     const payload = {
-      access_key: key,
-      subject: `[Portfolio] ${subject}`,
       name,
       email,
-      message: `From: ${name} <${email}>\nSubject: ${subject}\n\n${message}`,
-      replyto: email,
+      subject,
+      message,
+      _replyto: email,
+      _subject: `[Portfolio] ${subject}`,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: '',
     };
 
     try {
       const res = await firstValueFrom(
-        this.http.post<Web3FormsResponse>(WEB3FORMS_URL, payload, {
+        this.http.post<FormSubmitResponse>(FORM_ENDPOINT, payload, {
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-        })
+        }),
       );
 
-      if (res.success) {
+      const ok = res.success === true || res.success === 'true';
+      if (ok) {
         this.submitStatus.set('success');
         this.submitMessage.set('Thanks — your message was sent. I will reply soon.');
         this.form.reset();
@@ -86,7 +90,7 @@ export class Contact {
     } catch {
       this.submitStatus.set('error');
       this.submitMessage.set(
-        'Could not send right now. Check your connection or try again in a moment.'
+        `Could not send right now. Email me directly at ${CONTACT_EMAIL}.`,
       );
     } finally {
       this.submitting.set(false);

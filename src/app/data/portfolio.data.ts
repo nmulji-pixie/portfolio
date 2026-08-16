@@ -74,28 +74,52 @@ export const PROJECTS: Project[] = [
 
 export const EXPERIENCES: Experience[] = [
   {
-    period: 'August 2025 — Present',
-    title: 'Software Development Intern',
+    period: 'May 2026 — Aug. 2026',
+    title: 'Software Engineering Intern',
     company: 'Airbus',
     description:
-      'Developed data automation tools and reporting systems to optimize engineering workflows. Contributed to the design and implementation of scalable internal applications, improving data processing efficiency and reducing manual effort. Collaborated with cross-functional teams to enhance software reliability and streamline reporting pipelines.',
+      'Built a real-time JavaScript and Node.js data pipeline that cut manual processing by 45%, integrating 5+ internal databases and deploying on Google Cloud.',
     icon: 'briefcase',
   },
   {
-    period: 'August 2025 — May 2026',
-    title: 'Teaching Assistant',
-    company: 'Polytechnique Montreal',
-    description:
-      'Assisted students in the Software Design course by clarifying key concepts, supporting lab sessions, and reviewing assignments. Helped reinforce best practices in object-oriented design, modular programming, and clean software architecture using Java.',
-    icon: 'briefcase',
-  },
-  {
-    period: 'June 2025 — May 2026',
+    period: 'May 2025 — May 2026',
     title: 'Research Intern',
-    company: 'Polytechnique Montreal',
+    company: 'Polytechnique Montréal',
     description:
-      'Contributed to a research project focused on building an interactive visual algorithm platform to improve understanding of core computer science concepts. Developed dynamic visualizations of sorting algorithms and graph structures, emphasizing clarity, usability, and educational value.',
+      'Built an interactive Java and Angular platform to visualize data structures and algorithms, with a TypeScript animation engine and Graphviz graphs for DFS and BFS.',
     icon: 'research',
+  },
+  {
+    period: 'Sept. 2025 — Dec. 2025',
+    title: 'Software Engineering Intern',
+    company: 'Airbus',
+    description:
+      'Optimized QlikSense dashboards for 100+ stakeholders and built Python and Angular tools to automate reporting, plus an AI research agent for technical insights.',
+    icon: 'briefcase',
+  },
+  {
+    period: 'Aug. 2025 — May 2026',
+    title: 'Teaching Assistant – Software Analysis and Design',
+    company: 'Polytechnique Montréal',
+    description:
+      'Supported students in software analysis and design, reinforcing object-oriented design, modular programming, and clean software architecture.',
+    icon: 'briefcase',
+  },
+  {
+    period: 'Aug. 2025 — Dec. 2025',
+    title: 'Teaching Assistant – Analysis and Design of User Interfaces',
+    company: 'Polytechnique Montréal',
+    description:
+      'Guided students through user interface analysis and design, covering usability, interaction patterns, and interface prototyping.',
+    icon: 'briefcase',
+  },
+  {
+    period: 'Aug. 2025 — Dec. 2025',
+    title: 'Teaching Assistant – Data Structures and Algorithms',
+    company: 'Polytechnique Montréal',
+    description:
+      'Mentored 50+ students in Java data structures, complexity analysis, and algorithmic problem-solving.',
+    icon: 'briefcase',
   },
 ];
 
@@ -148,11 +172,9 @@ export const TECH_STACK: TechCategory[] = [
   },
 ];
 
-export const CONTACT_EMAIL = 'nimet.mulji@example.com';
+export const CONTACT_EMAIL = 'tshiendanimet@gmail.com';
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: 'Github', href: 'https://github.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'Twitter', href: 'https://twitter.com' },
-  { label: 'Instagram', href: 'https://instagram.com' },
+  { label: 'Github', href: 'https://github.com/nmulji-pixie' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/nimetmulji' },
 ];

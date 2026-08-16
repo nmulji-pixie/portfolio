@@ -3,6 +3,17 @@
     <app-section-heading title="Contact" />
 
     <form class="contact__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate appScrollReveal [appScrollRevealDelay]="80">
+      <div class="contact__honeypot" aria-hidden="true">
+        <label for="contact-website">Website</label>
+        <input
+          id="contact-website"
+          type="text"
+          formControlName="website"
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
+
       <div class="contact__row contact__row--split">
         <div class="contact__field">
           <label class="contact__label" for="contact-name">Name</label>
@@ -71,6 +82,11 @@
           {{ submitMessage() }}
         </p>
       }
+
+      <p class="contact__alt">
+        Or email me at
+        <a class="contact__alt-link" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+      </p>
     </form>
   </div>
 </section>
