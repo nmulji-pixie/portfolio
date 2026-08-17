@@ -46,7 +46,7 @@
   width: 100%;
   padding: 0.75rem 1rem;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-primary);
   background: var(--bg-primary);
   border: 1px solid var(--border-muted);
@@ -122,6 +122,7 @@
 .contact__alt-link {
   color: var(--color-primary);
   text-decoration: none;
+  overflow-wrap: anywhere;
 
   &:hover {
     text-decoration: underline;
@@ -130,7 +131,7 @@
 
 @media (max-width: 640px) {
   .contact__form {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .contact__row--split {
@@ -144,5 +145,10 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  .contact__submit {
+    width: 100%;
+    min-height: 2.75rem;
   }
 }

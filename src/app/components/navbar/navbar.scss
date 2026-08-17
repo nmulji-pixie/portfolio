@@ -3,6 +3,7 @@
   top: 0;
   z-index: 100;
   padding: 1.25rem 0;
+  padding-top: max(1.25rem, env(safe-area-inset-top));
   background: rgba(18, 17, 16, 0.75);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle);
@@ -16,7 +17,7 @@
 
   &__logo {
     font-family: var(--font-cursive);
-    font-size: clamp(1.125rem, 2.25vw, 1.5rem);
+    font-size: clamp(1.05rem, 4.6vw, 1.5rem);
     font-weight: 400;
     letter-spacing: 0.02em;
     line-height: 1;
@@ -25,6 +26,43 @@
     text-decoration: none;
     text-transform: none;
     white-space: nowrap;
+  }
+
+  &__toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    justify-self: end;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    color: var(--color-primary);
+  }
+
+  &__toggle-bar {
+    display: block;
+    width: 1.125rem;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  &__toggle--open {
+    .navbar__toggle-bar:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .navbar__toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .navbar__toggle-bar:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
   }
 
   &__nav {
@@ -69,21 +107,39 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 0;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
   .navbar__inner {
     grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .navbar__toggle {
+    display: flex;
   }
 
   .navbar__nav {
+    display: none;
     grid-column: 1 / -1;
-    justify-self: center;
-    gap: 1.25rem;
-    order: 3;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+    justify-self: stretch;
+    padding: 0.5rem 0 0.25rem;
   }
 
-  .navbar__cta {
-    justify-self: end;
+  .navbar__nav--open {
+    display: flex;
+  }
+
+  .navbar__link {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 0.5rem;
+    font-size: 0.9375rem;
+    min-height: 2.75rem;
   }
 }

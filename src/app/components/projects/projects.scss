@@ -169,6 +169,17 @@
   }
 }
 
+@media (max-width: 600px) {
+  .projects__grid {
+    max-width: none;
+    gap: 1rem;
+  }
+
+  .project-card__body {
+    padding: 1.25rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :host ::ng-deep .scroll-reveal-card {
     opacity: 1;

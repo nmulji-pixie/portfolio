@@ -103,13 +103,37 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 1.5rem;
+  }
+
   .hero__grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 1.75rem;
+    text-align: center;
   }
 
   .hero__portrait {
-    max-width: 280px;
+    max-width: min(220px, 62vw);
     margin: 0 auto;
+  }
+
+  .hero__headline {
+    font-size: clamp(1.55rem, 7.2vw, 2.25rem);
+    overflow-wrap: anywhere;
+  }
+
+  .hero__bio {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__cta {
+    margin-left: 0;
   }
 }

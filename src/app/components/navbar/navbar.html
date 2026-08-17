@@ -1,15 +1,37 @@
 <header class="navbar">
   <div class="container navbar__inner">
-    <a href="#home" class="navbar__logo" (click)="setActive('home')">Nimet T. Mulji</a>
+    <a href="#home" class="navbar__logo" (click)="onNavClick($event, 'home')">Nimet T. Mulji</a>
 
-    <nav class="navbar__nav" aria-label="Main navigation">
+    <button
+      type="button"
+      class="navbar__toggle"
+      [class.navbar__toggle--open]="menuOpen()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="main-nav"
+      [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+      (click)="toggleMenu()"
+    >
+      <span class="navbar__toggle-bar" aria-hidden="true"></span>
+      <span class="navbar__toggle-bar" aria-hidden="true"></span>
+      <span class="navbar__toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav
+      id="main-nav"
+      class="navbar__nav"
+      [class.navbar__nav--open]="menuOpen()"
+      aria-label="Main navigation"
+    >
       @for (link of navLinks; track link.fragment) {
-      <a [href]="'#' + link.fragment" class="navbar__link"
-        [class.navbar__link--active]="activeFragment() === link.fragment" (click)="setActive(link.fragment)">
-        {{ link.label }}
-      </a>
+        <a
+          [href]="'#' + link.fragment"
+          class="navbar__link"
+          [class.navbar__link--active]="activeFragment() === link.fragment"
+          (click)="onNavClick($event, link.fragment)"
+        >
+          {{ link.label }}
+        </a>
       }
     </nav>
-
   </div>
 </header>
