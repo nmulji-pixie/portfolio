@@ -176,5 +176,5 @@ export const CONTACT_EMAIL = 'tshiendanimet@gmail.com';
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { label: 'Github', href: 'https://github.com/nmulji-pixie' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/nimetmulji' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/nimetmulji/' },
 ];
